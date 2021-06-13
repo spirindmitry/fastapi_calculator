@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("button").click(function () {
+                $.ajax(
+                    {
+                        type: 'post',
+                        url: 'http://0.0.0.0:8000/calc',
+                        data: JSON.stringify({
+                            number1: parseInt($("#number1").val()),
+                            number2: parseInt($("#number2").val())
+                        }),
+                        contentType: "application/json; charset=utf-8",
+                        traditional: true,
+                        success: function (data, status) {
+                            $("#result").val(data.result);
+                        },
+                        error: function (data, error, error_text) {
+                            console.log(data, error_text, error)
+                            $("#result").val(JSON.parse(data.responseText).detail[0].msg);
+                        }
+                    });
+            });
+        });
+    </script>
+</head>
+<body>
+
+<label>
+    <input id="number1" type="number">
+</label>
+<label>+
+    <input id="number2" type="number">
+</label>
+<button> =</button>
+<label>
+    <input id="result" type="text" readonly>
+</label>
+</body>
+</html>

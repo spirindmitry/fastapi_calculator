@@ -1,3 +1,4 @@
+import uvicorn
 from fastapi import FastAPI
 
 from pydantic import BaseModel, conint
@@ -31,3 +32,7 @@ def my_sum(number1, number2):
 def calc(input_data: InputData):
     result = my_sum(input_data.number1, input_data.number2)
     return Result(result=result)
+
+
+if __name__ == "__main__":
+    uvicorn.run(app, host="0.0.0.0", port=8000)

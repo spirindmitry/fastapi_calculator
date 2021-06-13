@@ -4,10 +4,10 @@
 `pip install -r requirements.txt`
 
 ## Running
-`uvicorn main:app`
+`python main.py`
 
 ## Testing
 `pytest`
 
 ## Docs
-http://127.0.0.1:8000/docs
+http://0.0.0.0:8000/docs
